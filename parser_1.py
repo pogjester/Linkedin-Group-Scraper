@@ -31,6 +31,6 @@ def parse (file_r):
 
     for col in df.select_dtypes(include=['object']):  # Assumes text columns are of type 'object'
         df[col] = df[col].str.strip().replace(r'\s+', ' ', regex=True)
-
+        
     # Write the DataFrame to an Excel file
     df.to_excel('output.xlsx', index=False)

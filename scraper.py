@@ -1,11 +1,9 @@
 from selenium import webdriver
 from selenium.webdriver.common.by import By
-from bs4 import BeautifulSoup
+from selenium.webdriver.chrome.options import Options
 import time
-import pandas as pd
 import os
 from dotenv import load_dotenv
-import requests
 import datetime
 from parser_1 import parse
 import logging
@@ -15,7 +13,12 @@ logging.basicConfig(level=logging.DEBUG, filename='selenium.log')
 load_dotenv()
 
 # Creating a webdriver instance
-driver = webdriver.Chrome()
+options = Options()
+options.add_argument('--disable-gpu')  # Disable GPU hardware acceleration
+options.add_argument('--no-sandbox')  # Bypass OS security model, Chrome's restrictive sandboxing
+options.add_argument('--disable-dev-shm-usage')  # Overcome limited resource problems
+
+driver = webdriver.Chrome(options=options)
 # This instance will be used to log into LinkedIn
  
 # Opening linkedIn's login page
